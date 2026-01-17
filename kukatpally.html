@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking - Kukatpally</title>
+    <link rel="stylesheet" href="css/kukatpally.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .location-header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-parking"></i>
+            <a href="index.html"><span>Smart Parking</span></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#booking">Book Slot</a></li>
+            <li class="location-dropdown">
+                <a href="#" class="location-link">Location <i class="fas fa-caret-down"></i></a>
+                <div class="location-dropdown-content">
+                    <a href="lbnagar.html">LB Nagar</a>
+                    <a href="dilshuknagar.html">Dilshuknagar</a>
+                    <a href="mehedipatnam.html">Mehedipatnam</a>
+                    <a href="hitechcity.html">Hi-Tech City</a>
+                    <a href="kukatpally.html" class="active">Kukatpally</a>
+                </div>
+            </li>
+            <li><a href="#history">History</a></li>
+            <li><a href="#complaint">Complaints</a></li>
+        </ul>
+    </nav>
+
+    <!-- Location Header -->
+    <div class="location-header">
+        <i class="fas fa-map-marker-alt"></i> Kukatpally
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="hero">
+            <h1>Welcome to Smart Parking - Kukatpally</h1>
+            <p>The most convenient way to book your parking slots</p>
+            <a href="#booking" class="btn-primary">Book Now</a>
+        </div>
+        <div class="info-container">
+            <div class="info-card">
+                <i class="fas fa-car"></i>
+                <h3>Easy Booking</h3>
+                <p>Book your parking slot in just a few clicks</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h3>24/7 Service</h3>
+                <p>Our parking lot is open round the clock</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Secure Parking</h3>
+                <p>Your vehicle is safe with us</p>
+            </div>
+        </div>
+        <div class="availability">
+            <h2>Current Availability at Kukatpally</h2>
+            <div class="availability-stats">
+                <div class="stat">
+                    <span id="two-wheeler-available">45</span>/45
+                    <p>Two Wheeler</p>
+                </div>
+                <div class="stat">
+                    <span id="four-wheeler-available">40</span>/40
+                    <p>Four Wheeler</p>
+                </div>
+                <div class="stat">
+                    <span id="heavy-vehicle-available">15</span>/15
+                    <p>Heavy Vehicle</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="section">
+        <h2>Book a Parking Slot at Kukatpally</h2>
+        <div class="booking-container">
+            <div class="vehicle-selection">
+                <h3>Select Vehicle Type</h3>
+                <div class="vehicle-options">
+                    <div class="vehicle-option" data-price="50" onclick="selectVehicleType('two-wheeler')">
+                        <i class="fas fa-motorcycle"></i>
+                        <p>Two Wheeler</p>
+                        <span>₹50</span>
+                    </div>
+                    <div class="vehicle-option" data-price="100" onclick="selectVehicleType('four-wheeler')">
+                        <i class="fas fa-car"></i>
+                        <p>Four Wheeler</p>
+                        <span>₹100</span>
+                    </div>
+                    <div class="vehicle-option" data-price="120" onclick="selectVehicleType('heavy-vehicle')">
+                        <i class="fas fa-truck"></i>
+                        <p>Heavy Vehicle</p>
+                        <span>₹120</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slot-selection">
+                <h3>Select a Parking Slot</h3>
+                <div class="slot-grid" id="slotGrid">
+                    <!-- Slots will be generated dynamically by JavaScript -->
+                </div>
+            </div>
+
+            <div class="user-details">
+                <h3>Enter Your Details</h3>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicleNumber">Vehicle Number</label>
+                        <input type="text" id="vehicleNumber" placeholder="e.g., TS01AB1234" required>
+                        <small>Format: State Code + District Code + 2 Letters + 4 Numbers</small>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" required min="">
+                        </div>
+                        <div class="form-group">
+                            <label for="entry-time">Entry Time</label>
+                            <input type="time" id="entry-time" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="duration">Duration (hours)</label>
+                            <input type="number" id="duration" min="1" max="24" value="1" required>
+                        </div>
+                        
+                    </div>
+                    <input type="hidden" id="exit-time">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <button type="button" class="btn-primary" id="proceedToPayment">Proceed to Payment</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Payment Details</h2>
+            <div class="booking-summary">
+                <h3>Booking Summary</h3>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Vehicle Type:</span>
+                        <span id="summaryVehicleType"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Slot Number:</span>
+                        <span id="summarySlotNumber"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Location:</span>
+                        <span id="summaryLocation">Kukatpally</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Date:</span>
+                        <span id="summaryDate"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Entry Time:</span>
+                        <span id="summaryEntryTime"></span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Duration:</span>
+                        <span id="summaryDuration"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Amount:</span>
+                        <span id="summaryAmount"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-options">
+                <h3>Select Payment Method</h3>
+                <div class="payment-methods">
+                    <div class="payment-method" onclick="selectPaymentMethod('phonepe')">
+                        <i class="fab fa-phone pay"></i>
+                        <span>PhonePe</span>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('googlepay')">
+                        <i class="fab fa-google-wallet"></i>
+                        <span>Google Pay</span>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('visa')">
+                        <i class="fab fa-cc-visa"></i>
+                        <span>Visa</span>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('creditcard')">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Credit Card</span>
+                    </div>
+                </div>
+            </div>
+            <div id="cardDetails" class="card-details" style="display: none;">
+                <h3>Card Details</h3>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" maxlength="16" placeholder="1234 5678 9012 3456">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="text" id="expiryDate" placeholder="MM/YY">
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" maxlength="3" placeholder="123">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cardName">Name on Card</label>
+                    <input type="text" id="cardName" placeholder="Enter name as on card">
+                </div>
+            </div>
+            <button class="btn-primary" id="payNowBtn">Pay Now</button>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="confirmationCloseBtn">&times;</span>
+            <div class="confirmation-details">
+                <h2>Booking Confirmed!</h2>
+                <div class="qr-container">
+                    <div id="qrcode"></div>
+                </div>
+                <div class="confirmation-info">
+                    <div class="info-row">
+                        <span>Name:</span>
+                        <span id="confirmName"></span>
+                    </div>
+                    <div class="info-row">
+                        <span>Vehicle Number:</span>
+                        <span id="confirmVehicleNumber"></span>
+                    </div>
+                    <div class="info-row">
+                        <span>Vehicle Type:</span>
+                        <span id="confirmVehicleType"></span>
+                    </div>
+                    <div class="info-row">
+                        <span>Location:</span>
+                        <span id="confirmLocation">Kukatpally</span>
+                    </div>
+                    <div class="info-row">
+                        <span>Date:</span>
+                        <span id="confirmDate"></span>
+                    </div>
+                    <div class="info-row">
+                        <span>Entry Time:</span>
+                        <span id="confirmEntryTime"></span>
+                    </div>
+                    <div class="info-row">
+                        <span>Exit Time:</span>
+                        <span id="confirmExitTime"></span>
+                    </div>
+                    <div class="info-row">
+                        <span>Duration:</span>
+                        <span id="confirmDuration"></span>
+                    </div>
+                    <div class="info-row">
+                        <span>Slot Number:</span>
+                        <span id="confirmSlotNumber"></span>
+                    </div>
+                    <div class="info-row">
+                        <span>Amount Paid:</span>
+                        <span id="confirmAmount"></span>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="viewBookingHistory()">View Booking History</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Section -->
+    <section id="history" class="section">
+        <h2>Booking History - Kukatpally</h2>
+        <div class="history-container">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Name</th>
+                        <th>Vehicle Number</th>
+                        <th>Vehicle Type</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Entry Time</th>
+                        <th>Exit Time</th>
+                        <th>Duration</th>
+                        <th>Slot</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    <!-- History will be populated by JavaScript -->
+                </tbody>
+            </table>
+            <div id="emptyHistory" class="empty-state">
+                <i class="fas fa-history"></i>
+                <p>No booking history available for Kukatpally</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complaint Section -->
+    <section id="complaint" class="section">
+        <h2>Submit a Complaint - Kukatpally</h2>
+        <div class="complaint-container">
+            <form id="complaintForm">
+                <div class="form-group">
+                    <label for="complaintName">Full Name</label>
+                    <input type="text" id="complaintName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="complaintEmail">Email Address</label>
+                    <input type="email" id="complaintEmail" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="complaintBookingId">Booking ID (if applicable)</label>
+                    <input type="text" id="complaintBookingId" placeholder="Enter your booking ID">
+                </div>
+                <div class="form-group">
+                    <label for="complaintType">Complaint Type</label>
+                    <select id="complaintType" required>
+                        <option value="">Select complaint type</option>
+                        <option value="service">Service Issue</option>
+                        <option value="payment">Payment Issue</option>
+                        <option value="facility">Facility Issue</option>
+                        <option value="security">Security Issue</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="complaintMessage">Complaint Details</label>
+                    <textarea id="complaintMessage" rows="5" placeholder="Please describe your issue in detail" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Submit Complaint</button>
+            </form>
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>Toll-Free: 1800-123-4567</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>Email: support@smartparking.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Address: Kukatpally Branch, Smart Parking Complex</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-parking"></i>
+                <span>Smart Parking</span>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#booking">Book Slot</a></li>
+                        <li><a href="#history">History</a></li>
+                        <li><a href="#complaint">Complaints</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Our Locations</h4>
+                    <ul>
+                        <li><a href="location-lbnagar.html">LB Nagar</a></li>
+                        <li><a href="location-dilshuknagar.html">Dilshuknagar</a></li>
+                        <li><a href="location-mehedipatnam.html">Mehedipatnam</a></li>
+                        <li><a href="location-hitechcity.html">Hi-Tech City</a></li>
+                        <li><a href="location-kukatpally.html">Kukatpally</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i> 1800-123-4567</li>
+                        <li><i class="fas fa-envelope"></i> support@smartparking.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Kukatpally Branch, Smart Parking Complex</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Parking System. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="js/kukatpally.js"></script>
+    <script>
+        // Set current location for this page
+        document.addEventListener("DOMContentLoaded", function() {
+            const locationName = "Kukatpally";
+            
+            // Update location in JavaScript variables or local storage if needed
+            if (typeof window.currentLocation !== 'undefined') {
+                window.currentLocation = locationName;
+            }
+            
+            // Store this in localStorage for persistence
+            localStorage.setItem('selectedLocation', locationName);
+            
+            // Set the location in any summary or confirmation displays
+            const locationDisplays = document.querySelectorAll('[id$="Location"]');
+            locationDisplays.forEach(display => {
+                if (!display.textContent) {
+                    display.textContent = locationName;
+                }
+            });
+            
+            // Set minimum date to today for booking
+            const dateInput = document.getElementById('date');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+                dateInput.value = today;
+            }
+        });
+    </script>
+</body>
+</html>

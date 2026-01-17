@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-parking"></i>
+            <span>Smart Parking</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#booking">Book Slot</a></li>
+            <li class="location-dropdown">
+                <a href="#" class="location-link">Location <i class="fas fa-caret-down"></i></a>
+                <div class="location-dropdown-content">
+                    <a href="lbnagar.html">LB Nagar</a>
+                    <a href="dilshuknagar.html">Dilshuknagar</a>
+                    <a href="mehedipatnam.html">Mehedipatnam</a>
+                    <a href="hitechcity.html">Hi-Tech City</a>
+                    <a href="kukatpally.html">Kukatpally</a>
+                </div>
+            </li>
+            <li><a href="#history">History</a></li>
+            <li><a href="#complaint">Complaints</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="hero">
+            <h1>Welcome to Smart Parking</h1>
+            <p>The most convenient way to book your parking slots</p>
+            <a href="#booking" class="btn-primary">Book Now</a>
+        </div>
+        <div class="info-container">
+            <div class="info-card">
+                <i class="fas fa-car"></i>
+                <h3>Easy Booking</h3>
+                <p>Book your parking slot in just a few clicks</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h3>24/7 Service</h3>
+                <p>Our parking lot is open round the clock</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Secure Parking</h3>
+                <p>Your vehicle is safe with us</p>
+            </div>
+        </div>
+       
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-parking"></i>
+                <span>Smart Parking</span>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#booking">Book Slot</a></li>
+                        <li><a href="#history">History</a></li>
+                        <li><a href="#complaint">Complaints</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Our Locations</h4>
+                    <ul>
+                        <li><a href="location-lbnagar.html">LB Nagar</a></li>
+                        <li><a href="location-dilshuknagar.html">Dilshuknagar</a></li>
+                        <li><a href="location-mehedipatnam.html">Mehedipatnam</a></li>
+                        <li><a href="location-hitechcity.html">Hi-Tech City</a></li>
+                        <li><a href="location-kukatpally.html">Kukatpally</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i> 1800-123-4567</li>
+                        <li><i class="fas fa-envelope"></i> support@smartparking.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Hyderabad Branch, Smart Parking Complex</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Parking System. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        // Add JavaScript to handle the location dropdown
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set minimum date to today for booking
+            const dateInput = document.getElementById('date');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+                dateInput.value = today;
+            }
+            
+            // Enable dropdown functionality
+            const locationDropdown = document.querySelector('.location-dropdown');
+            if (locationDropdown) {
+                locationDropdown.addEventListener('click', function() {
+                    const dropdownContent = this.querySelector('.location-dropdown-content');
+                    dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+                });
+                
+                // Close dropdown when clicking elsewhere
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('.location-dropdown')) {
+                        const dropdownContent = document.querySelector('.location-dropdown-content');
+                        if (dropdownContent) {
+                            dropdownContent.style.display = 'none';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
