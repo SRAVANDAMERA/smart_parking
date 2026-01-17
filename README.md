@@ -90,7 +90,7 @@ Users can submit complaints related to bookings or parking issues using a clean 
 
 ▶️ How to Run the Project
 Step 1: Download or Clone
-git clone https://github.com/SRAVANDAMERA/smart-parking.git
+git clone https://github.com/SRAVANDAMERA/smart_parking.git
 
 Step 2: Open Project Folder
 cd final-parking
