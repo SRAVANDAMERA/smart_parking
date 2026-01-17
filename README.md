@@ -103,6 +103,8 @@ Open index.html in any modern web browser.
 ✔ No database
 ✔ No installation required
 
+
+
 🎯 Use Cases
 
 College mini / major project
@@ -134,6 +136,6 @@ You are free to modify and enhance it.
 
 👨‍💻 Author
 Sravan
-
+project live :https://smart-parkimg.vercel.app/index.html
 Smart Parking System
 Frontend Web Development Project
