@@ -136,6 +136,6 @@ You are free to modify and enhance it.
 
 👨‍💻 Author
 Sravan
-project live :https://smart-parkimg.vercel.app/index.html
+project live : smart-parking-lyart.vercel.app
 Smart Parking System
 Frontend Web Development Project
